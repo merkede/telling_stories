@@ -2,50 +2,41 @@
 engine: knitr
 ---
 
-# Telling stories with data {#sec-introduction}
+# What is pyspark {#sec-introduction}
 
-**Required material**
+PySpark is a tour-de-force in the world of big data processing. As an interface for Apache Spark and the Python programming language, it provides a seamless and energetic way to tackle massive datasets with élan. 
 
-- Read *Counting the Countless*, [@keyes2019]
-  - This brief article discusses the difficulties of turning the world into data, in this case with respect to gender.
-- Watch *Data Science Ethics in 6 Minutes*, [@register2020].
-  - This quick video integrates ethics and data science in a constructive way.
-- Read *What is Code?*, [@nottomford]
-  - This article provides an overview of the role of code, and as it is lengthy you should focus on the first three sections.
+Its roots can be traced back to the early 2000s, when researchers at UC Berkeley's AMPLab developed Spark as a response to the limitations of Hadoop's MapReduce framework for big data processing. Since its inception, Spark has rapidly grown in popularity, and PySpark has emerged as a key tool for big data processing and analysis.
 
-## On telling stories
 
-One of the first things that many parents regularly do when their children are born is read stories to them. In doing so they carry on a tradition that has occurred for millennia. Myths, fables, and fairy tales can be seen and heard all around us. Not only are they entertaining but they enable us to learn something about the world. While *The Very Hungry Caterpillar* [@veryhungry] may seem quite far from the world of dealing with data, there are similarities. Both are trying to tell a story and teach us something about the world.
+## A brief history of Big Data
 
-When using data, we try to tell a convincing story. It may be as exciting as predicting elections, as banal as increasing internet advertising click rates, as serious as finding the cause of a disease, or as fun as forecasting basketball games. In any case the key elements are the same. The early twentieth century English author, E. M. Forster, described the aspects common to all novels as: story, people, plot, fantasy, prophecy, pattern, and rhythm [@forster]. Similarly, when we tell stories with data, there are common concerns, regardless of the setting:
+In the beginning, processing vast amounts of data was a monumental task, limited by the computing power and storage capacity of traditional systems. That all changed with the advent of Big Data and the technologies developed to harness its power.
 
-1. What is the dataset? Who generated the dataset and why?
-2. What is the process that underpins the dataset? Given that process, what is missing from the dataset or has been poorly measured? Could other datasets have been generated, and if so, how different could they have been to the one that we have?
-3. What is the dataset trying to say, and how can we let it say this? What else could it say? How do we decide between these?
-4. What are we hoping others will see from this dataset, and how can we convince them of this? How much work must we do to convince them?
-5. Who is affected by the processes and outcomes related to this dataset? To what extent are they represented in the dataset, and have they been part of conducting the analysis?
+In 2003, Doug Cutting, then at Yahoo, created the open-source project known as Hadoop. Inspired by a paper by Google on the concept of distributed file systems and data processing, Cutting sought to build a scalable, reliable, and cost-effective solution for managing Big Data. As he stated, "The idea behind Hadoop is to enable distributed processing of large data sets across clusters of computers using simple programming models."
 
-In the past, certain elements of telling stories with data were easier. For instance, experimental design has a long and robust tradition within agricultural and medical sciences, physics, and chemistry. Student's t-distribution was identified in the early 1900s by a chemist, William Sealy Gosset, who worked at Guinness, a beer manufacturer [@boland1984biographical]. It would have been relatively straightforward for him to randomly sample the beer and change one aspect at a time.
+Hadoop quickly gained popularity and set the stage for the development of other Big Data technologies, including MapReduce. The MapReduce programming model, first introduced by Google in 2004, provided a framework for processing large amounts of data in a parallel and distributed manner. As Jeff Dean, one of the original MapReduce developers at Google, put it, "MapReduce is a way to take a large amount of data, spread it across a large number of computers, and process it in parallel to get a result."
 
-Many of the fundamentals of the statistical methods that we use today were developed in such settings. In those circumstances, it was typically possible to establish control groups and randomize; and there were fewer ethical concerns. A story told with the resulting data was likely to be fairly convincing.
+While Hadoop and MapReduce were groundbreaking developments, they were not without their challenges. The programming model was complex and difficult to learn, and the systems were not well suited for iterative or interactive processing, which is often necessary for advanced data analysis.
 
-Unfortunately, little of this applies these days, given the diversity of settings to which statistical methods are applied. On the other hand, we have many advantages. For instance, we have well-developed statistical techniques, easier access to large datasets, and open-source statistical languages such as R [@citeR]. But the difficulty of conducting traditional experiments means that we must also turn to other aspects to tell a convincing story.
+Enter Apache Spark. Created in response to the limitations of Hadoop and MapReduce, Spark was designed to be a fast, in-memory data processing engine that could handle both batch and streaming data. As Matei Zaharia, one of the original developers of Spark, stated, "The goal of Spark was to make it easier to build end-to-end big data applications, and to provide a more flexible and high-level programming model than MapReduce."
 
-## Workflow components
+Since its creation in 2010, Spark has grown to become one of the most widely adopted Big Data processing technologies, with a thriving ecosystem of tools and libraries. Spark's performance and ease of use have made it a favorite among data scientists and engineers, and its ability to handle batch, streaming, and interactive data processing has made it a key component of many Big Data architectures.
 
-There are five core components to the workflow needed to tell stories with data:
+The evolution of Big Data processing has been driven by a need for scalable, flexible, and powerful technologies. From the early days of Hadoop and MapReduce, to the present-day dominance of Spark, each step in this journey has brought us closer to realizing the full potential of Big Data. The future of Big Data processing is bright, and we can be sure that the next chapter in this story will be just as exciting and impactful as the ones that came before.
 
-1. **Plan** and sketch an endpoint.
-2. **Simulate** and consider that simulated data.
-3. **Acquire** and prepare the actual data.
-4. **Explore** and understand the actual data.
-5. **Share** what was done and what was found.
 
-We begin by **planning and sketching an endpoint** because this ensures that we think carefully about where we want to go. It forces us to deeply consider our situation, acts to keep us focused and efficient, and helps reduce scope creep. In *Alice's Adventures in Wonderland* [@citealice], Alice asks the Cheshire Cat which way she should go. The Cheshire Cat replies by asking where Alice would like to go. And when Alice replies that she does not mind, so long as she gets somewhere, the Cheshire Cat says then the direction does not matter because you will always get somewhere if you "walk long enough". The issue, in our case, is that we typically cannot afford to walk aimlessly for long. While it may be that the endpoint needs to change, it is important that this is a deliberate, reasoned, decision. And that is only possible given an initial target. There is no need to spend too much time on this to get a lot of value from it. Often five minutes with paper and pen is enough.
+## Introduction
 
-The next step is to **simulate data** because that forces us into the details. It helps with cleaning and preparing the dataset because it focuses us on the classes in the dataset and the distribution of the values that we expect. For instance, if we were interested in the effect of age-groups on political preferences, then we may expect that our age-group column would be a factor, with four possible values: "18-29", "30-44", "45-59", "60+". The process of simulation provides us with clear features that our real dataset should satisfy. We could use these features to define tests that would guide our data cleaning and preparation. For instance, we could check our real dataset for age-groups that are not one of those four values. When those tests pass, we could be confident that our age-group column only contains values that we expect.
+In terms of its technical advantages, PySpark offers a highly flexible and scalable architecture that enables organizations to adapt to changing requirements and handle increasing volumes of data. This scalability is a result of the Resilient Distributed Datasets (RDD) data structure, which allows for parallel processing and distribution across multiple nodes. Additionally, PySpark's compatibility with a wide range of data sources, including Hadoop HDFS and Apache Cassandra, makes it a versatile tool for big data processing and analysis.
 
-Simulating data is also important when we turn to statistical modelling. When we are at that stage, we are concerned with whether the model reflects what is in the dataset. The issue is that if we go straight to modelling the real dataset, then we do not know whether we have a problem with our model. We initially simulate data so that we precisely know the underlying data generation process. We then apply the model to that simulated dataset. If we get out what we put in, then we know that our model is performing appropriately, and can turn to the real dataset. Without that initial application to simulated data, it would be more difficult to have confidence in our model.
+PySpark also boasts a rich set of libraries and APIs for big data processing, including support for SQL, machine learning, and graph processing. This has led to its widespread use in the development of a wide range of big data applications, from simple data analysis and reporting to complex machine learning models and real-time data processing pipelines. The integration of PySpark with popular machine learning libraries such as Scikit-learn and TensorFlow has also made it possible for organizations to build and deploy state-of-the-art models on massive datasets.
+
+In terms of its community and development, PySpark is an open-source platform that is actively maintained and developed by a large and vibrant community of contributors. This community has been instrumental in the development of the platform and has provided a wealth of resources and expertise to organizations looking to leverage PySpark for big data processing and analysis.
+
+With PySpark, one can unleash the full potential of Apache Spark on large-scale datasets, thanks to the Resilient Distributed Datasets (RDD) data structure that enables parallel processing and distribution across multiple nodes. PySpark also boasts compatibility with a diverse array of data sources, from Hadoop HDFS to Apache Cassandra and beyond.
+
+
 
 Simulation is often cheap---almost free given modern computing resources and statistical programming languages---and fast. It provides "an intimate feeling for the situation" [@hamming1996, p. 239]. The way to proceed is to start with a simulation that just contains the essentials, get that working, and to then complicate it.
 
