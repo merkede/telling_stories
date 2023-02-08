@@ -11,7 +11,7 @@ book:
   cover-image: figures/tellingstorieswithdatapainting.png
   repo-url: https://github.com/RohanAlexander/telling_stories/
   repo-actions: [edit]
-  site-url: https://tellingstorieswithdata.com
+  site-url: https://jolly-sprite-b9cece.netlify.app/
   sidebar:
     collapse-level: 3
     pinned: true
